@@ -6,7 +6,10 @@ class Hitter extends Phaser.State {
 
     create() {
         this.score = 0;
+        var topScoreTemp = parseInt(localStorage.getItem("points"));
         this.topScore = this.topScore == undefined ? 0 : this.topScore;
+        this.topScore = Math.max(isNaN(topScoreTemp) ? 0 : topScoreTemp, this.topScore);
+        localStorage.setItem("points", this.topScore)
         this.scoreText = game.add.text(10, 10, "-", {
             font: "bold 40px Arial",
             fill: "#acacac"
